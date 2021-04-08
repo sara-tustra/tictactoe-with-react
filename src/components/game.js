@@ -4,49 +4,35 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./board.css";
 
 import Cuadro from "./square";
-import { Jedi, Sith } from "./weapons";
 
-const Game = (props) => {
-  const [tablero, setTablero] = useState(Array(9).fill(null)); //boardsquares, setboardsquares
-  const [turnodeJedi, setTurnoJedi] = useState(true);
 
-  //función que hará algo cuando se de click en Cuadro:
-  const yEntoncesClick = (index) => {
-    const tableroActual = [...tablero]; //squares
-    //si el index del array (tablero) está ocupado, no hace nada
-    if (tableroActual[index]) return;
+const Game = ({player1, player2, turn, turns, play}) => {
 
-    tableroActual[index] = turnodeJedi ? <Jedi /> : <Sith />;
-
-    setTablero(tableroActual);
-    setTurnoJedi(!turnodeJedi);
-  };
-
-  // funcion que toma el index jugado y renderiza el Cuadro con el valor y función correctos
 
   const renderJugada = (index) => {
     return (
-      <Cuadro value={tablero[index]} onClick={() => yEntoncesClick(index)} />
+      <Cuadro turn={turns[index]} onClick={() => play(turn, index)} />
     );
   };
 
-  let status;
-  const winner = quienGano(tablero);
-  status = winner
-    ? `${winner} has prevailed!`
-    : `It is ${
-        turnodeJedi
-          ? "Jedi's turn (May The Force Be With You)"
-          : "Sith's turn (Peace is a lie, there is only passion)"
-      }`;
+  // let status;
+  // const winner = quienGano(tablero);
+  // status = winner
+  //   ? `${winner} has prevailed!`
+  //   : `It is ${
+  //       turnodeJedi
+  //         ? "Jedi's turn (May The Force Be With You)"
+  //         : "Sith's turn (Peace is a lie, there is only passion)"
+  //     }`;
 
   return (
     <div className="boardContainer">
-      <h4 className="m-2">{status}</h4>
+      <h4 className="m-2">Player1: {player1}</h4>
+      <h4 className="m-2">Player2: {player2}</h4>
       <button
         type="button"
         className="btn btn-secondary btn-sm m-4"
-        onClick={props.startOver}
+        // onClick={props.startOver}
       >
         Start Over
       </button>
