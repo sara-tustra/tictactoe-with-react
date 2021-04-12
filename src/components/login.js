@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './style.css';
-import { Jedi, Sith } from './weapons';
+
 
 
 
@@ -17,8 +17,8 @@ const LogIn = ({handlePlayer1, handlePlayer2, handleTurn}) => {
             <input className="form-control" type="text" placeholder="Player 2 username" onChange={e => handlePlayer2(e.target.value)}/>
             </div>
             <div className="logoLine">
-                <button className="sith" onClick={() => handleTurn(<Sith/>)}><i className="fab fa-sith" ></i></button>
-                <button className="jedi" onClick={() => handleTurn(<Jedi/>)}><i className="fas fa-jedi" ></i></button>
+                <button className="sith" onClick={() => handleTurn("X")}>X</button>
+                <button className="jedi" onClick={() => handleTurn("O")}>O</button>
             </div>  
         </div>
     )
