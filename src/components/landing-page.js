@@ -34,13 +34,16 @@ const LandingPage = (props) => {
   };
 
   const play = (turn, index) => {
+
+    if(quienGano(state.turns) !== null) return
     let { turns } = state;
     turns[index] = turn;
     setState({
       ...state,
       turns,
       turn: state.turn === "X" ? "O" : "X",
-    });
+    })
+    
   };
 
   const startOver = () => {
